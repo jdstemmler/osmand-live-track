@@ -6,7 +6,13 @@
    $data['altitude'] = $_GET['altitude'];
    $data['speed'] = $_GET['speed'];
    
-   $f = fopen('/tmp/location', 'w');
+   $f = fopen('/tmp/location.latest', 'w');
    fwrite($f, serialize($data));
    fclose($f);
+   
+   $kml = fopen('resources/log.body', 'w+')
+   fwrite($kml, "$data['lat'], $data['lon'], 0\n")
+   fclose($kml)
 ?>
+
+<b>saving location <?=$data['lat']?>, <?=$data['lon']?> to file</b>
