@@ -6,7 +6,7 @@
    $data['altitude'] = $_GET['altitude'];
    $data['speed'] = $_GET['speed'];
    
-   $f = fopen('/tmp/location.latest', 'w');
+   $f = fopen('location.latest', 'w');
    fwrite($f, serialize($data));
    fclose($f);
    

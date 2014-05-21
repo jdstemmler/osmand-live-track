@@ -14,7 +14,7 @@ fwrite($kml, $kmlfoot);
 
 fclose($kml);
 
-$file = file_get_contents('/tmp/location.latest');
+$file = file_get_contents('location.latest');
 $data = unserialize($file);
 
 ?>
