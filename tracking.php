@@ -10,9 +10,9 @@
    fwrite($f, serialize($data));
    fclose($f);
    
-   $kml = fopen('resources/log.body', 'w+')
-   fwrite($kml, "$data['lat'], $data['lon'], 0\n")
-   fclose($kml)
+   /*$kml = fopen('resources/log.body', 'w+')
+   /*fwrite($kml, "$data['lat'], $data['lon'], 0\n")
+   /*fclose($kml)
 ?>
 
 <b>saving location <?=$data['lat']?>, <?=$data['lon']?> to file</b>
