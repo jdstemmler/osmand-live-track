@@ -18,11 +18,13 @@ fclose($kml);
 $file = file_get_contents('/tmp/location.latest');
 $data = unserialize($file);
 
+$lat = $data['lat'];
+$lon = $data['lon'];
 ?>
 
  <html>
   <head>
-   <title>My First Map</title>
+   <title>OsmAnd Location</title>
    <meta charset="UTF-8">
    <meta name="viewport" 
                  content="width=device-width">
@@ -38,7 +40,7 @@ $data = unserialize($file);
    <script type="text/javascript">
     function GetMap() {
      var latlng = 
-      new google.maps.LatLng(<?=$data["lat"]?>, <?=$data["lon"]?>);
+      new google.maps.LatLng(<?=$lat?>, <?=$lon?>);
      var myOptions = {
            zoom: 15,
          center: latlng,
