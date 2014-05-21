@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <?php
-
-$kml = fopen('map_data.kml', 'w');
+/*
+$kml = fopen('/tmp/map_data.kml', 'w');
 
 $kmlhead = file_get_contents('resources/log.head');
-$kmlbody = file_get_contents('resources/log.body');
+$kmlbody = file_get_contents('/tmp/log.body');
 $kmlfoot = file_get_contents('resources/log.foot');
 
 fwrite($kml, "$kmlhead'\n'");
@@ -13,8 +13,9 @@ fwrite($kml, $kmlbody);
 fwrite($kml, $kmlfoot);
 
 fclose($kml);
+*/
 
-$file = file_get_contents('location.latest');
+$file = file_get_contents('/tmp/location.latest');
 $data = unserialize($file);
 
 ?>
@@ -49,12 +50,7 @@ $data = unserialize($file);
                                    myOptions);
      marker1 = new google.maps.Marker();
      marker1.setPosition(latlng);
-     /*marker1.setMap(map)*/
-     
-     var kml=new google.maps.KmlLayer(
-      "http://www.stratus.cloudwatch.net/map_data.kml");
-	  kml.setMap(map);
-	  marker1.setMap(map)
+     marker1.setMap(map);
    }
   </script>
  </body>
