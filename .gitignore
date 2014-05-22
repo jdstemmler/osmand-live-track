@@ -1,5 +1,6 @@
 *.kml
 *.body
 *~
-location*
+*.latest
+*.history
 app_settings.php
