@@ -1,5 +1,7 @@
 <?php
 
-$api_key = "your_api_key_here"
+$api_key = "your_api_key_here";
+$reset_key = "enter_reset_key";
+$tracking_key = "tracking_key";
 
 ?>
