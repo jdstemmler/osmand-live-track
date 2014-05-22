@@ -25,27 +25,44 @@ $tstamp = $data['timestamp'];
      <b>
      Last Map Update: <?=$tstamp?>
      </b>
-   <div id="mapContainer" 
-             style="width:500px;height:600px">
+   <div id="mapContainer" style="width:500px;height:600px">
    </div>
    <script type="text/javascript">
     function GetMap() {
-     var latlng = 
-      new google.maps.LatLng(<?=$lat?>, <?=$lon?>);
-     var myOptions = {
-           zoom: 15,
+     var latlng = new google.maps.LatLng(<?=$lat?>, <?=$lon?>);
+     var mapOptions = {
+         zoom: 15,
          center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+         mapTypeId: google.maps.MapTypeId.ROADMAP
      };
-     var container = document.getElementById(
-                               "mapContainer");
-     map = new google.maps.Map(container,
-                                   myOptions);
-     var kml=new google.maps.KmlLayer('http://stratus.cloudwatch.net/resources/map_data.kml');
-     kml.setMap(map, myOptions);
-     marker1 = new google.maps.Marker();
-     marker1.setPosition(latlng);
-     marker1.setMap(map, myOptions);
+     var container = document.getElementById("mapContainer");
+     var map = new google.maps.Map(container, mapOptions);
+
+     var marker1 = new google.maps.Marker({
+         position: latlng,
+         map: map});
+     var pathCoordinates = [
+        <?php
+           $track = fopen('../resources/log.body', 'r')
+           if ($track) {
+              while (($line = fgets($track)) !== false) {
+           echo "new google.maps.LatLng($line)"
+              }
+           } else {
+           echo "new google.maps.LatLng($lat, $lon)"
+           }
+           fclose($track);
+           ?>
+        ]
+        var mapPath = new google.maps.Polyline({
+            path: pathCoordinates,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        mapPath.setMap(map);
    }
   </script>
  </body>
