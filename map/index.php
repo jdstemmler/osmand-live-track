@@ -42,10 +42,10 @@ $tstamp = $data['timestamp'];
      map = new google.maps.Map(container,
                                    myOptions);
      var kml=new google.maps.KmlLayer('http://stratus.cloudwatch.net/resources/map_data.kml');
-     kml.setMap(map);
+     kml.setMap(map, myOptions);
      marker1 = new google.maps.Marker();
      marker1.setPosition(latlng);
-     marker1.setMap(map);
+     marker1.setMap(map, myOptions);
    }
   </script>
  </body>
