@@ -30,7 +30,7 @@ fwrite($f, serialize($data));
 fclose($f);
 
 $body = fopen($hist, 'a');
-fwrite($body, "new google.maps.LatLng(${lat}, ${lon})\n");
+fwrite($body, "new google.maps.LatLng(${lat}, ${lon}),\n");
 fclose($body);
 ?>
 
