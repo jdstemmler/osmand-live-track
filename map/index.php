@@ -1,25 +1,12 @@
 <!DOCTYPE html>
 
 <?php
-
-$kml = fopen('../resources/map_data.kml', 'w');
-
-$kmlhead = file_get_contents('../resources/log.head');
-$kmlbody = file_get_contents('../resources/log.body');
-$kmlfoot = file_get_contents('../resources/log.foot');
-
-fwrite($kml, "$kmlhead");
-fwrite($kml, $kmlbody);
-fwrite($kml, $kmlfoot);
-
-fclose($kml);
-
-
 $file = file_get_contents('/tmp/location.latest');
 $data = unserialize($file);
 
 $lat = $data['lat'];
 $lon = $data['lon'];
+$tstamp = $data['timestamp'];
 ?>
 
  <html>
@@ -34,6 +21,10 @@ $lon = $data['lon'];
    </script> 
   </head>
   <body onload="GetMap()">
+   <div id="textContainer" style="width:500px">
+     <b>
+     Last Map Update: <?=$tstamp?>
+     </b>
    <div id="mapContainer" 
              style="width:500px;height:600px">
    </div>
@@ -50,7 +41,7 @@ $lon = $data['lon'];
                                "mapContainer");
      map = new google.maps.Map(container,
                                    myOptions);
-     var kml=new google.maps.KmlLayer('../resources/map_data.kml');
+     var kml=new google.maps.KmlLayer('http://stratus.cloudwatch.net/resources/map_data.kml');
      kml.setMap(map);
      marker1 = new google.maps.Marker();
      marker1.setPosition(latlng);

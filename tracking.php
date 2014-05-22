@@ -13,9 +13,25 @@
     fwrite($f, serialize($data));
     fclose($f);
 
-    $kml = fopen('./resources/log.body', 'a');
-    fwrite($kml, "${lon},${lat}\n");
-    fclose($kml);
+    $body = fopen('./resources/log.body', 'a');
+    fwrite($body, "${lon},${lat}\n");
+    fclose($body);
 ?>
 
 <b>saving location <?=$lat?>, <?=$lon?> to file</b>
+
+<?php
+
+$kml = fopen('./resources/map_data.kml', 'w');
+
+$kmlhead = file_get_contents('./resources/log.head');
+$kmlbody = file_get_contents('./resources/log.body');
+$kmlfoot = file_get_contents('./resources/log.foot');
+
+fwrite($kml, $kmlhead);
+fwrite($kml, $kmlbody);
+fwrite($kml, $kmlfoot);
+
+fclose($kml);
+
+?>
