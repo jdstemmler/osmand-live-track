@@ -10,9 +10,9 @@ This particular setup works well on my system. I cannot guarantee that it will w
 ### Usage and Operation
 This package works by accepting the location through the `./tracking.php` script and saves the location in two different places:
 
-* /tmp/location.latest - the most recent location sent to `tracking.php` is stored in this file. It is overwritten upon each call to `tracking.php`. This is location is represented by a pin on the google map is is the centerpoint of the map.
+* ./resources/location.latest - the most recent location sent to `tracking.php` is stored in this file. It is overwritten upon each call to `tracking.php`. This is location is represented by a pin on the google map is is the centerpoint of the map.
 
-* /resources/log.body - location data is appended to this file each time data is sent to `tracking.php`. This historical location information is shown as a simple line segment on the map.
+* ./resources/location.history - location data is appended to this file each time data is sent to `tracking.php`. This historical location information is shown as a simple line segment on the map.
 
 Make sure that the `resources` folder has the appropriate write permissions that the user `www_data` can create the files in the `resources` folder.
 
