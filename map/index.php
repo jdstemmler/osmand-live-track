@@ -46,7 +46,7 @@ $tstamp = $data['timestamp'];
            $track = fopen('../resources/log.body', 'r');
            if ($track) {
               while (($line = fgets($track)) !== false) {
-           echo "new google.maps.LatLng($line)";
+           echo "new google.maps.LatLng($line),\n";
               }
            } else {
            echo "new google.maps.LatLng($lat, $lon)";
