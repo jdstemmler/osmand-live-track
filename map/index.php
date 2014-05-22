@@ -13,26 +13,10 @@ $tstamp = $data['timestamp'];
   <head>
    <title>OsmAnd Location</title>
    <meta charset="UTF-8">
-   <meta name="viewport" 
-                 content="width=device-width">
-   <script type="text/javascript"
-      src="http://maps.google.com/maps/api/js?
-                    key=your_key_here&sensor=false">
-   </script>
-  </head>
-  <body onload="GetMap()">
-   <div id="textContainer" style="width:500px">
-     <b>
-     Last Map Update:
-      <?php
-        echo date('Y-m-d H:i:s', substr($tstamp,0,-3));
-      ?>
-     </b>
-   </div>
-   <div id="mapContainer" style="width:500px;height:600px">
-   </div>
+   <meta name="viewport" content="width=device-width">
+   <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=your_key_here&sensor=false"></script>
    <script type="text/javascript">
-    function GetMap() {
+    function initialize() {
      var latlng = new google.maps.LatLng(<?=$lat?>, <?=$lon?>);
      var mapOptions = {
          zoom: 15,
@@ -46,7 +30,7 @@ $tstamp = $data['timestamp'];
          position: latlng,
          map: map});
      var pathCoordinates = [
-        <?php
+         <?php
            $track = fopen('../resources/location.history', 'r');
            if ($track) {
               while (($line = fgets($track)) !== false) {
@@ -56,18 +40,30 @@ $tstamp = $data['timestamp'];
            echo "new google.maps.LatLng($lat, $lon)";
            }
            fclose($track);
-           ?>
-        ];
-        var mapPath = new google.maps.Polyline({
-            path: pathCoordinates,
-            geodesic: true,
-            strokeColor: '#FF0000',
-            strokeOpacity: 1.0,
-            strokeWeight: 2
+          ?>
+     ];
+     var mapPath = new google.maps.Polyline({
+         path: pathCoordinates,
+         geodesic: true,
+         strokeColor: '#FF0000',
+         strokeOpacity: 1.0,
+         strokeWeight: 3
         });
 
-        mapPath.setMap(map);
-   }
-  </script>
+     mapPath.setMap(map);
+    }
+   </script>
+  </head>
+
+  <body onload="initialize()">
+   <div id="textContainer" style="width:500px">
+     <b>
+     Last Map Update:
+      <?php
+        echo date('Y-m-d H:i:s', substr($tstamp,0,-3));
+      ?>
+     </b>
+   </div>
+   <div id="mapContainer" style="width:500px;height:600px" />
  </body>
 </html>
