@@ -43,17 +43,17 @@ $tstamp = $data['timestamp'];
          map: map});
      var pathCoordinates = [
         <?php
-           $track = fopen('../resources/log.body', 'r')
+           $track = fopen('../resources/log.body', 'r');
            if ($track) {
               while (($line = fgets($track)) !== false) {
-           echo "new google.maps.LatLng($line)"
+           echo "new google.maps.LatLng($line)";
               }
            } else {
-           echo "new google.maps.LatLng($lat, $lon)"
+           echo "new google.maps.LatLng($lat, $lon)";
            }
            fclose($track);
            ?>
-        ]
+        ];
         var mapPath = new google.maps.Polyline({
             path: pathCoordinates,
             geodesic: true,
