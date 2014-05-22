@@ -2,3 +2,4 @@
 *.body
 *~
 location*
+app_settings.php

@@ -7,6 +7,9 @@ $data = unserialize($file);
 $lat = $data['lat'];
 $lon = $data['lon'];
 $tstamp = $data['timestamp'];
+
+include "../app_settings.php"
+
 ?>
 
  <html>
@@ -14,7 +17,7 @@ $tstamp = $data['timestamp'];
    <title>OsmAnd Location</title>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width">
-   <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=your_key_here&sensor=false"></script>
+   <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=<?=$api_key?>&sensor=false"></script>
    <script type="text/javascript">
     function initialize() {
      var latlng = new google.maps.LatLng(<?=$lat?>, <?=$lon?>);
