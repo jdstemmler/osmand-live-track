@@ -24,7 +24,7 @@ include "../app_settings.php"
      var mapOptions = {
          zoom: 15,
          center: latlng,
-         mapTypeId: google.maps.MapTypeId.ROADMAP
+         mapTypeId: google.maps.MapTypeId.HYBRID
      };
      var container = document.getElementById("mapContainer");
      var map = new google.maps.Map(container, mapOptions);
@@ -61,7 +61,7 @@ include "../app_settings.php"
   <body onload="initialize()">
    <div id="textContainer" style="width:500px">
      <b>
-     Last Map Update:
+     Last Location Update:
       <?php
         echo date('Y-m-d H:i:s', substr($tstamp,0,-3));
       ?>
