@@ -18,12 +18,15 @@ $tstamp = $data['timestamp'];
    <script type="text/javascript"
       src="http://maps.google.com/maps/api/js?
                     key=your_key_here&sensor=false">
-   </script> 
+   </script>
   </head>
   <body onload="GetMap()">
    <div id="textContainer" style="width:500px">
      <b>
-     Last Map Update: <?=$tstamp?>
+     Last Map Update:
+      <?php
+        echo date('Y-m-d H:i:s', $tstamp);
+      ?>
      </b>
    <div id="mapContainer" style="width:500px;height:600px">
    </div>
