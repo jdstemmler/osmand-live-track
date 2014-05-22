@@ -1,7 +1,16 @@
 <!DOCTYPE html>
 
 <?php
-$file = file_get_contents('../resources/location.latest');
+
+$loc = $_GET['leg']
+if ($loc) {
+    $file = file_get_contents("../resources/$loc.latest");
+    $hist = file_get_contents("../resources/$loc.history");
+} else {
+    $file = file_get_contents("../resources/location.latest");
+    $hist = file_get_contents("../resources/location.history");
+}
+
 $data = unserialize($file);
 
 $lat = $data['lat'];
@@ -32,19 +41,9 @@ include "../app_settings.php"
      var marker1 = new google.maps.Marker({
          position: latlng,
          map: map});
-     var pathCoordinates = [
-         <?php
-           $track = fopen('../resources/location.history', 'r');
-           if ($track) {
-              while (($line = fgets($track)) !== false) {
-           echo "new google.maps.LatLng($line),\n";
-              }
-           } else {
-           echo "new google.maps.LatLng($lat, $lon)";
-           }
-           fclose($track);
-          ?>
-     ];
+
+     var pathCoordinates = [<?=$hist?>];
+
      var mapPath = new google.maps.Polyline({
          path: pathCoordinates,
          geodesic: true,
@@ -64,6 +63,7 @@ include "../app_settings.php"
      Last Location Update:
       <?php
         echo date('Y-m-d H:i:s', substr($tstamp,0,-3));
+	echo "<br>Lat: $lat, Lon: $lon";
       ?>
      </b>
    </div>
