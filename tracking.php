@@ -9,11 +9,11 @@
     $lat = $data['lat'];
     $lon = $data['lon'];
     
-    $f = fopen('/tmp/location.latest', 'w');
+    $f = fopen('./resources/location.latest', 'w');
     fwrite($f, serialize($data));
     fclose($f);
 
-    $body = fopen('./resources/log.body', 'a');
+    $body = fopen('./resources/location.history', 'a');
     fwrite($body, "${lat}, ${lon}\n");
     fclose($body);
 ?>

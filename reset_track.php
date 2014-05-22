@@ -1,5 +1,5 @@
 <?php
-$kml = fopen('./resources/log.body', 'w');
+$kml = fopen('./resources/location.history', 'w');
 fclose($kml);
 ?>
 <b>track successfully reset</b>

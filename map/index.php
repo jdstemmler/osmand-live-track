@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <?php
-$file = file_get_contents('/tmp/location.latest');
+$file = file_get_contents('../resources/location.latest');
 $data = unserialize($file);
 
 $lat = $data['lat'];
@@ -25,9 +25,10 @@ $tstamp = $data['timestamp'];
      <b>
      Last Map Update:
       <?php
-        echo date('Y-m-d H:i:s', $tstamp);
+        echo date('Y-m-d H:i:s', substr($tstamp,0,-3));
       ?>
      </b>
+   </div>
    <div id="mapContainer" style="width:500px;height:600px">
    </div>
    <script type="text/javascript">
@@ -46,7 +47,7 @@ $tstamp = $data['timestamp'];
          map: map});
      var pathCoordinates = [
         <?php
-           $track = fopen('../resources/log.body', 'r');
+           $track = fopen('../resources/location.history', 'r');
            if ($track) {
               while (($line = fgets($track)) !== false) {
            echo "new google.maps.LatLng($line),\n";
