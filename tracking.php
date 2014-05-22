@@ -1,4 +1,7 @@
 <?php
+
+include "app_settings.php";
+
 $data['lat'] = $_GET['lat'];
 $data['lon'] = $_GET['lon'];
 $data['timestamp'] = $_GET['timestamp'];

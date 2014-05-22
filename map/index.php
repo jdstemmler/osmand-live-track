@@ -2,7 +2,7 @@
 
 <?php
 
-$loc = $_GET['leg']
+$loc = $_GET['leg'];
 if ($loc) {
     $file = file_get_contents("../resources/$loc.latest");
     $hist = file_get_contents("../resources/$loc.history");
@@ -17,7 +17,7 @@ $lat = $data['lat'];
 $lon = $data['lon'];
 $tstamp = $data['timestamp'];
 
-include "../app_settings.php"
+include "../app_settings.php";
 
 ?>
 
@@ -41,8 +41,14 @@ include "../app_settings.php"
      var marker1 = new google.maps.Marker({
          position: latlng,
          map: map});
-
-     var pathCoordinates = [<?=$hist?>];
+     marker1.setMap(map);
+     var pathCoordinates = [<?php 
+                             if ($hist){
+                              echo $hist;
+                             } else {
+                              echo "new google.maps.LatLng($lat, $lon)";
+                             }
+                            ?>];
 
      var mapPath = new google.maps.Polyline({
          path: pathCoordinates,
@@ -67,6 +73,6 @@ include "../app_settings.php"
       ?>
      </b>
    </div>
-   <div id="mapContainer" style="width:500px;height:600px" />
+   <div id="mapContainer" style="width:500px;height:600px"></div>
  </body>
 </html>

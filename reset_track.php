@@ -1,13 +1,13 @@
 <?php
 
-include "app_settings.php"
+include "app_settings.php";
 
 if ($_GET['reset_key'] != $reset_key) {
     echo "keys do not match";
     return;
 }
 
-$loc = $_GET['leg']
+$loc = $_GET['leg'];
 
 if ($loc) {
     $file = "./resources/$loc.latest";
@@ -18,10 +18,11 @@ if ($loc) {
 }
 
 $f = fopen($file, 'w');
-fclose($file)
+fclose($file);
 
 $kml = fopen($hist, 'w');
 fclose($kml);
 
+echo "$hist and $file successfully reset";
+
 ?>
-<b>track successfully reset</b>
